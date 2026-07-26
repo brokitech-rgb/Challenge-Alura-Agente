@@ -341,6 +341,31 @@ que no viaja en el código.
 > Las apps del tier gratuito se suspenden tras varios días sin visitas y se
 > reactivan solas con la primera carga, que puede tardar hasta un minuto.
 
+### Verificación del deploy
+
+Comprobaciones hechas contra la instancia publicada:
+
+```console
+$ curl -s -o /dev/null -w '%{http_code}' https://challenge-alura-agente-7er556nwbljvpv6z8skhet.streamlit.app/~/+/
+200
+
+$ curl -s https://challenge-alura-agente-7er556nwbljvpv6z8skhet.streamlit.app/~/+/_stcore/health
+ok
+```
+
+Y en la barra lateral de la app publicada:
+
+| Indicador | Valor observado |
+|---|---|
+| Estado del modelo | `groq · openai/gpt-oss-120b` (no "modo demo") |
+| Documentos indexados | 6 (5 PDF + 1 CSV) |
+| Fragmentos | 124 |
+
+Que el badge muestre el modelo y no "modo demo" confirma que el secreto
+`GROQ_API_KEY` se inyectó correctamente desde la plataforma: la app lo lee de
+`st.secrets` además de las variables de entorno, porque Streamlit Cloud no
+siempre lo expone como variable de entorno.
+
 ---
 
 ## Tests
