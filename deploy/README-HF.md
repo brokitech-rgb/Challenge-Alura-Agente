@@ -21,4 +21,4 @@ Para que responda con el modelo de lenguaje, cargá el secreto `DEEPSEEK_API_KEY
 en **Settings → Variables and secrets**. Sin él, la app funciona en modo demo y
 devuelve extractos textuales recuperados de los PDF.
 
-Código y documentación completa: https://github.com/Brok3rr/Challenge-Alura-Agente
+Código y documentación completa: https://github.com/brokitech-rgb/Challenge-Alura-Agente

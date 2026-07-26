@@ -68,7 +68,7 @@ sudo usermod -aG docker $USER && newgrp docker
 ## 4. Desplegar
 
 ```bash
-git clone https://github.com/Brok3rr/Challenge-Alura-Agente.git
+git clone https://github.com/brokitech-rgb/Challenge-Alura-Agente.git
 cd Challenge-Alura-Agente
 ```
 

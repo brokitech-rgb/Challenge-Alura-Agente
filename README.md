@@ -167,7 +167,7 @@ devolver ruido que el modelo podría tomar como cierto. Está fijado en los test
 ### 1. Clonar e instalar
 
 ```bash
-git clone https://github.com/Brok3rr/Challenge-Alura-Agente.git
+git clone https://github.com/brokitech-rgb/Challenge-Alura-Agente.git
 cd Challenge-Alura-Agente
 python -m venv .venv
 ```

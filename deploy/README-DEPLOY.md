@@ -21,7 +21,7 @@ Gratis, sin tarjeta de crédito, pensada exactamente para este tipo de app.
 3. Completá:
    | Campo | Valor |
    |---|---|
-   | Repository | `Brok3rr/Challenge-Alura-Agente` |
+   | Repository | `brokitech-rgb/Challenge-Alura-Agente` |
    | Branch | `master` |
    | Main file path | `app.py` |
 4. Antes de dar Deploy, abrí **Advanced settings → Secrets** y pegá:
