@@ -91,6 +91,16 @@ with st.sidebar:
         st.session_state.mensajes = []
         st.rerun()
 
+def render_trazas(trazas: list[dict]) -> None:
+    if not trazas:
+        return
+    with st.expander(f"Razonamiento — {len(trazas)} llamada(s) a herramientas"):
+        for i, traza in enumerate(trazas, start=1):
+            st.markdown(f"**{i}. `{traza['herramienta']}`**")
+            st.json(traza["argumentos"], expanded=False)
+            st.code(traza["resumen"], language="json")
+
+
 # ---------------------------------------------------------------- cabecera
 st.title("📅 Agente de Soporte")
 st.caption(
@@ -98,7 +108,14 @@ st.caption(
     "conocimiento, FAQ, política de privacidad, planes y precios, y términos de uso."
 )
 
-if not st.session_state.mensajes:
+# La entrada se resuelve antes de dibujar nada: así las sugerencias no quedan
+# visibles junto a la primera respuesta. `st.chat_input` se ancla al pie de la
+# página sin importar en qué orden se lo invoque.
+entrada = st.chat_input("Escribí tu consulta…")
+pregunta = entrada or st.session_state.pendiente
+st.session_state.pendiente = None
+
+if not st.session_state.mensajes and not pregunta:
     st.markdown("**Probá con alguna de estas:**")
     columnas = st.columns(2)
     for i, sugerencia in enumerate(PREGUNTAS_SUGERIDAS):
@@ -114,18 +131,12 @@ if not st.session_state.mensajes:
 for mensaje in st.session_state.mensajes:
     with st.chat_message(mensaje["role"]):
         st.markdown(mensaje["content"])
-        if mensaje.get("trazas"):
-            with st.expander(f"Razonamiento — {len(mensaje['trazas'])} llamada(s) a herramientas"):
-                for i, traza in enumerate(mensaje["trazas"], start=1):
-                    st.markdown(f"**{i}. `{traza['herramienta']}`**")
-                    st.json(traza["argumentos"], expanded=False)
-                    st.code(traza["resumen"], language="json")
+        render_trazas(mensaje.get("trazas") or [])
 
-# ---------------------------------------------------------------- entrada
-entrada = st.chat_input("Escribí tu consulta…")
-pregunta = entrada or st.session_state.pendiente
-st.session_state.pendiente = None
-
+# ---------------------------------------------------------------- turno nuevo
+# El turno en curso se dibuja acá mismo y NO se hace rerun: el bucle de arriba
+# ya se encarga de re-dibujarlo en la proxima interaccion. Renderizar y ademas
+# rerunear duplicaba cada mensaje en el arbol de la pagina.
 if pregunta:
     st.session_state.mensajes.append({"role": "user", "content": pregunta})
     with st.chat_message("user"):
@@ -140,7 +151,6 @@ if pregunta:
             respuesta = agente.responder(pregunta, historial)
 
         st.markdown(respuesta.texto)
-
         if respuesta.error:
             st.warning(respuesta.error, icon="⚠️")
 
@@ -148,14 +158,8 @@ if pregunta:
             {"herramienta": t.herramienta, "argumentos": t.argumentos, "resumen": t.resumen}
             for t in respuesta.trazas
         ]
-        if trazas:
-            with st.expander(f"Razonamiento — {len(trazas)} llamada(s) a herramientas"):
-                for i, traza in enumerate(trazas, start=1):
-                    st.markdown(f"**{i}. `{traza['herramienta']}`**")
-                    st.json(traza["argumentos"], expanded=False)
-                    st.code(traza["resumen"], language="json")
+        render_trazas(trazas)
 
     st.session_state.mensajes.append(
         {"role": "assistant", "content": respuesta.texto, "trazas": trazas}
     )
-    st.rerun()

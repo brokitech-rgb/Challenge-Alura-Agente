@@ -111,7 +111,7 @@ devolver ruido que el modelo podría tomar como cierto. Está fijado en los test
 | Búsqueda | **scikit-learn** (TF-IDF) | Índice híbrido liviano, sin GPU |
 | Datos tabulares | **pandas** | Lectura y consulta del CSV de planes |
 | Interfaz | **Streamlit** | Chat web en pocas líneas, deploy directo |
-| Tests | **pytest** | 34 tests sobre extracción, búsqueda y herramientas |
+| Tests | **pytest** + `streamlit.testing` | 41 tests sobre extracción, búsqueda, herramientas e interfaz |
 
 > **Nota sobre las fuentes del PDF.** La primera versión usaba las fuentes base
 > de PDF (Helvetica), que se escriben sin tabla `ToUnicode`: al extraer el texto,
@@ -150,7 +150,8 @@ devolver ruido que el modelo podría tomar como cierto. Está fijado en los test
 │   ├── build_pdfs.py           # Markdown -> PDF
 │   └── generar_ejemplos.py     # Corre la batería de preguntas y guarda la salida
 ├── tests/
-│   └── test_pipeline.py        # 34 tests
+│   ├── test_pipeline.py        # extraccion, busqueda y herramientas
+│   └── test_app.py             # interfaz, con el runner de Streamlit
 └── deploy/
     ├── README-DEPLOY.md        # Streamlit Cloud / Hugging Face / Docker
     ├── README-OCI.md           # Deploy en Oracle Cloud, paso a paso
@@ -342,10 +343,10 @@ python -m pytest -q
 ```
 
 ```
-34 passed
+41 passed
 ```
 
-Cubren las tres capas donde el proyecto se puede romper en silencio:
+Cubren las cuatro capas donde el proyecto se puede romper en silencio:
 
 - **Extracción** — que los 5 PDF se lean, que no se cuelen encabezados ni pies,
   que cada fragmento conserve su procedencia y que **los acentos sobrevivan**
@@ -355,6 +356,12 @@ Cubren las tres capas donde el proyecto se puede romper en silencio:
 - **Herramientas** — precios exactos contra el CSV, la aritmética de excedentes,
   y los casos borde: plan inexistente, Enterprise (que se cotiza a medida) y el
   plan Inicial, que no admite profesionales adicionales.
+- **Interfaz** — `tests/test_app.py` ejecuta `app.py` con el runner de Streamlit
+  y verifica el cableado en modo demo: que el click en una sugerencia dispare la
+  consulta, que las sugerencias desaparezcan después, y que **cada pregunta
+  produzca exactamente un par de mensajes**. Ese último cubre una regresión
+  real: la primera versión renderizaba el turno y además hacía `st.rerun()`, con
+  lo que cada mensaje quedaba duplicado en el árbol de la página.
 
 ---
 
