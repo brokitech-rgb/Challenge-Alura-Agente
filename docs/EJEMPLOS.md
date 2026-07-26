@@ -3,46 +3,21 @@
 > Archivo generado por `python scripts/generar_ejemplos.py`. 
 > Las respuestas son la salida textual del agente, sin editar.
 
-- **Generado:** 26/07/2026 13:43
-- **Motor:** MODO DEMO (sin clave de API)
+- **Generado:** 26/07/2026 14:26
+- **Motor:** modelo `openai/gpt-oss-120b`
 - **Fragmentos indexados:** 124
 
 ---
 
 ## 1. ¿Brokitech se queda con una parte de la seña que cobro?
 
-**Modo demo (sin clave de API).** Extractos textuales de la documentación, sin redacción del modelo:
+No, Brokitech no se queda con ninguna parte de la seña que cobras. El 100 % de la seña se transfiere a tu cuenta de Mercado Pago; nuestro único cobro es el abono mensual del plan, y la única deducción que puede existir es la comisión que cobra Mercado Pago, que no es nuestra.
 
-**1. FAQ de Soporte, pág. 2, sección «C1. ¿Brokitech se queda con parte de la seña?»**
-
-> C1. ¿Brokitech se queda con parte de la seña?
-No. El 100% de la seña va a tu cuenta de Mercado Pago. Nosotros cobramos únicamente el abono
-mensual del plan. La única deducción es la comisión de Mercado Pago, que es de ellos, no
-nuestra.
-
-**2. Base de Conocimiento del Producto, pág. 1, sección «1.1 Propuesta de valor en una línea»**
-
-> 1.1 Propuesta de valor en una línea
-Reservás por WhatsApp, pagás la seña por Mercado Pago, y el turno queda confirmado
-automáticamente en la agenda del negocio.
-
-**3. Base de Conocimiento del Producto, pág. 1, sección «1. Qué es Brokitech Turnos»**
-
-> 1. Qué es Brokitech Turnos
-Brokitech Turnos es una plataforma SaaS de gestión de turnos con cobro de seña anticipada por
-WhatsApp, diseñada para negocios de servicios en Argentina: peluquerías, barberías, centros de
-estética, consultorios odontológicos, kinesiología, estudios de tatuajes, veterinarias y talleres
-mecánicos.
-El problema que resuelve es concreto: el ausentismo sin aviso (conocido como "no-show"). Según
-nuestra medición interna sobre 1.240 cuentas activas, un negocio de servicios pierde en promedio
-entre el 18% y el 27% de su facturación potencial por turnos que el cliente reserva y no cumple.
-Brokitech Turnos reduce ese número a un promedio del 4,1% al exigir una seña previa a confirmar
-el turno.
-
+Fuente: FAQ de Soporte, pág. 2
 
 **Herramientas invocadas:**
 
-1. `buscar_en_documentacion({'consulta': '¿Brokitech se queda con una parte de la seña que cobro?', 'top_k': 3})`
+1. `buscar_en_documentacion({'consulta': 'seña cobro retención Brokitech'})`
 
 ---
 
@@ -85,405 +60,173 @@ plan: Profesional; precio mensual ars: 39900; precio anual por mes ars: 31920; a
 
 1. `buscar_en_documentacion({'consulta': 'Somos 8 profesionales y hacemos unos 1200 turnos por mes. ¿Qué plan me conviene y cuánto pagaría?', 'top_k': 3})`
 
+> Aviso: Falló la llamada al modelo (Error code: 400 - {'error': {'message': 'Tool call validation failed: tool call validation failed: parameters for tool consultar_planes did not match schema: errors: [`/plan`: expected string, but got null]', 'type': 'invalid_request_error', 'code': 'tool_use_failed', 'failed_generation': '{"name": "consultar_planes", "arguments": {\n  "plan": null\n}}'}}). Se respondió con extractos.
+
 ---
 
 ## 3. ¿Puedo usar mi número actual de WhatsApp Business?
 
-**Modo demo (sin clave de API).** Extractos textuales de la documentación, sin redacción del modelo:
+Sí, podés usar tu número actual, pero **tenés que liberarlo de WhatsApp Business antes de conectarlo a la Cloud API**.  
 
-**1. FAQ de Soporte, pág. 2, sección «B1. ¿Puedo usar mi número actual de WhatsApp Business?»**
+**Cómo hacerlo**
 
-> B1. ¿Puedo usar mi número actual de WhatsApp Business?
-No directamente. El número debe estar libre de WhatsApp al momento de conectarlo a la Cloud
-API. Si querés conservar el mismo número, primero tenés que eliminar la cuenta de WhatsApp
-Business desde la app (Configuración -> Cuenta -> Eliminar mi cuenta), esperar unos minutos y
-luego conectarlo. Perdés el historial de chats previo. La mayoría de nuestros clientes prefiere dar
-de alta una línea nueva y dedicada.
+1. En la app de WhatsApp Business, entrá a **Configuración → Cuenta → Eliminar mi cuenta**.  
+2. Esperá unos minutos (el número queda libre).  
+3. Conectá el número a Brokitech Turnos mediante la Cloud API.  
 
-**2. Base de Conocimiento del Producto, pág. 3, sección «4.1 Qué número se puede usar»**
+Tenés en cuenta que:
 
-> 4.1 Qué número se puede usar
-Se requiere un número de teléfono que no esté registrado en WhatsApp ni en WhatsApp Business
-al momento de la conexión. Recomendamos usar una línea dedicada al negocio.
-Trabajamos sobre la WhatsApp Cloud API oficial de Meta. No usamos librerías no oficiales ni
-automatización del cliente de escritorio, lo cual significa que la cuenta no corre riesgo de bloqueo
-por violación de términos.
+- **Perderás el historial de chats** previo al borrado.  
+- La mayoría de los clientes prefieren crear una línea nueva y dedicada para evitar interrupciones.  
 
-**3. FAQ de Soporte, pág. 2, sección «4. Revisá el estado de la cuenta de Meta en business.facebook.com — un rechazo de verificación»**
-
-> 4. Revisá el estado de la cuenta de Meta en business.facebook.com — un rechazo de verificación
-de negocio suspende el envío.
-
+Fuentes:  
+- FAQ de Soporte, pág. 2, sección «B1. ¿Puedo usar mi número actual de WhatsApp Business?».  
+- Base de Conocimiento del Producto, pág. 3, sección «4.1 Qué número se puede usar».
 
 **Herramientas invocadas:**
 
-1. `buscar_en_documentacion({'consulta': '¿Puedo usar mi número actual de WhatsApp Business?', 'top_k': 3})`
+1. `buscar_en_documentacion({'consulta': 'usar número actual de WhatsApp Business con Brokitech Turnos'})`
 
 ---
 
 ## 4. Si cancelo la suscripción, ¿cuánto tiempo tengo para exportar mis datos?
 
-**Modo demo (sin clave de API).** Extractos textuales de la documentación, sin redacción del modelo:
+Tenés **60 días** desde que cancelás la suscripción para exportar tus datos. Durante ese período la cuenta queda en modo lectura y podés descargar un ZIP con todos los CSV (clientes, turnos, pagos y servicios). Pasados los 60 días los datos se eliminan de forma permanente.  
 
-**1. FAQ de Soporte, pág. 4, sección «E5. ¿Puedo exportar todos mis datos?»**
-
-> E5. ¿Puedo exportar todos mis datos?
-Sí, en cualquier momento y sin costo, desde Configuración -> Exportar datos. Se genera un ZIP
-con CSVs de clientes, turnos, pagos y servicios. Llega por email en menos de 15 minutos.
-
-**2. FAQ de Soporte, pág. 1, sección «A3. ¿Cómo cancelo mi suscripción?»**
-
-> A3. ¿Cómo cancelo mi suscripción?
-Desde Configuración -> Suscripción -> Cancelar plan. La cancelación es efectiva al final del ciclo
-ya pagado; seguís teniendo acceso hasta esa fecha. No hay período de permanencia mínima ni
-penalidad por cancelación.
-
-**3. FAQ de Soporte, pág. 1, sección «A4. ¿Qué pasa con mis datos si cancelo?»**
-
-> A4. ¿Qué pasa con mis datos si cancelo?
-Conservamos tus datos en modo lectura durante 60 días desde la cancelación, para que puedas
-exportarlos. Pasados los 60 días se eliminan de forma permanente e irreversible. Podés pedir la
-eliminación inmediata escribiendo a privacidad@brokitech.com.
-
+Fuente: FAQ de Soporte, pág. 1, sección «A4. ¿Qué pasa con mis datos si cancelo?».  
+Fuente: FAQ de Soporte, pág. 4, sección «E5. ¿Puedo exportar todos mis datos?».
 
 **Herramientas invocadas:**
 
-1. `buscar_en_documentacion({'consulta': 'Si cancelo la suscripción, ¿cuánto tiempo tengo para exportar mis datos?', 'top_k': 3})`
+1. `buscar_en_documentacion({'consulta': 'tiempo para exportar datos después de cancelar suscripción'})`
 
 ---
 
 ## 5. ¿Qué diferencia hay entre el plan Profesional y el Negocio?
 
-**Modo demo (sin clave de API).** Extractos textuales de la documentación, sin redacción del modelo:
+**Respuesta breve**  
+El plan **Negocio** es la versión ampliada del plan **Profesional**: cuesta más, incluye más profesionales, turnos ilimitados y funcionalidades avanzadas (white‑label, API REST, webhooks, sucursales múltiples, SLA 99,5 % y soporte con primera respuesta en 4 h). El plan **Profesional** tiene un límite de 800 turnos/mes, 5 profesionales incluidos y no incluye esas herramientas avanzadas.
 
-**1. Planes y Precios, pág. 2, sección «4. Excedentes»**
+**Detalle comparativo**
 
-> 4. Excedentes
-Los planes tienen cupos. Superarlos no interrumpe el servicio; se factura el excedente en el ciclo
-siguiente:
-Concepto
-Costo del excedente
-Turno adicional (planes Inicial y Profesional)
-$95 por turno
-Conversación saliente adicional de WhatsApp
-$48 por conversación
-Profesional adicional (plan Profesional)
-$4.900 por mes
-Profesional adicional (plan Negocio)
-$3.900 por mes
-Sucursal adicional (plan Negocio)
-$19.900 por mes
-El plan Negocio no tiene límite de turnos, por lo que no genera excedente por ese concepto.
-Enviamos un aviso por email al alcanzar el 80% y el 100% del cupo mensual.
+| Característica | Plan Profesional | Plan Negocio |
+|----------------|------------------|--------------|
+| Precio mensual (IVA incl.) | $39 900 | $79 900 |
+| Precio anual (mes promedio) | $31 920 | $63 920 |
+| Ahorro anual | $95 760 | $191 760 |
+| Profesionales incluidos | 5 | 15 |
+| Turnos por mes | 800 (excedente $95/turno) | Ilimitados (sin costo de excedente) |
+| Conversaciones WhatsApp/mes | 1 500 (excedente $48) | 5 000 (excedente $48) |
+| Usuarios panel | 8 | 25 |
+| Analítica | Sí | Sí |
+| Google Calendar | Sí | Sí |
+| Onboarding asistido | Sí | Sí |
+| White‑label | No | Sí |
+| API REST | No | Sí |
+| Webhooks | No | Sí |
+| Multi‑sucursal | No | Sí |
+| SLA contractual | No | 99,5 % |
+| Soporte (primera respuesta) | ≤ 24 h hábiles (email + WhatsApp) | ≤ 4 h hábiles (email + WhatsApp + teléfono) |
+| Público objetivo | Peluquerías y centros de estética de 2‑5 personas | Cadenas con sucursales, clínicas o quien necesite API y marca propia |
 
-**2. Base de Conocimiento del Producto, pág. 4, sección «5. Conectar WhatsApp (verificación del número por SMS o llamada).»**
-
-> 5. Conectar WhatsApp (verificación del número por SMS o llamada).
-Los planes Profesional y Negocio incluyen una sesión de onboarding asistido por videollamada de
-
-**3. Planes y Precios, pág. 1, sección «2. Funcionalidades por plan»**
-
-> 2. Funcionalidades por plan
-Funcionalidad
-Inicial
-Profesional
-Negocio
-Enterprise
-Agenda
-multi-profesional
-Si
-Si
-Si
-Si
-Bot de WhatsApp
-Si
-Si
-Si
-Si
-Cobro de seña con
-Mercado Pago
-Si
-Si
-Si
-Si
-Recordatorios
-automáticos
-Si
-Si
-Si
-Si
-Exportación CSV /
-Excel
-Si
-Si
-Si
-Si
-Modo humano en
-conversaciones
-Si
-Si
-Si
-Si
-Panel de analítica y
-no-show
-—
-Si
-Si
-Si
-Sincronización con
-Google Calendar
-—
-Si
-Si
-Si
-Funcionalidad
-Inicial
-Profesional
-Negocio
-Enterprise
-Onboarding asistido
-por videollamada
-—
-Si
-Si
-Si
-Marca propia en los
-mensajes
-(white-label)
-—
-—
-Si
-Si
-API REST pública
-—
-—
-Si
-Si
-Webhooks salientes
-—
-—
-Si
-Si
-Múltiples sucursales
-—
-—
-Si
-Si
-SLA 99,5%
-contractual
-—
-—
-Si
-Si
-Autenticación en dos
-pasos obligatoria
-—
-—
-Si
-Si
-Gerente de cuenta
-dedicado
-—
-—
-—
-Si
-Instancia y base de
-datos dedicadas
-—
-—
-—
-Si
-Acuerdo de nivel de
-servicio
-personalizado
-—
-—
-—
-Si
-
+**Fuentes**  
+Fuente: Tabla comparativa de planes (CSV), pág. 1, sección «Plan Profesional»  
+Fuente: Tabla comparativa de planes (CSV), pág. 1, sección «Plan Negocio»  
+Fuente: Planes y Precios, pág. 2, sección «4. Excedentes»  
+Fuente: FAQ de Soporte, pág. 4, sección «G. Tiempos de respuesta del soporte»  
+Fuente: Planes y Precios, pág. 4, sección «8. Cómo elegir plan»
 
 **Herramientas invocadas:**
 
-1. `buscar_en_documentacion({'consulta': '¿Qué diferencia hay entre el plan Profesional y el Negocio?', 'top_k': 3})`
+1. `buscar_en_documentacion({'consulta': 'diferencias entre plan Profesional y plan Negocio'})`
 
 ---
 
 ## 6. ¿Usan las conversaciones de mis clientes para entrenar modelos de IA?
 
-**Modo demo (sin clave de API).** Extractos textuales de la documentación, sin redacción del modelo:
+No. El contenido de las conversaciones de tus clientes **no se usa** para entrenar ni afinar modelos de IA, ni propios ni de terceros.
 
-**1. FAQ de Soporte, pág. 4, sección «E3. ¿Pueden ver las conversaciones de mis clientes?»**
+**Detalle**
 
-> E3. ¿Pueden ver las conversaciones de mis clientes?
-Solo personal técnico autorizado, únicamente ante un ticket de soporte abierto por vos, y queda
-registrado en un log de auditoría que podés solicitar. No usamos el contenido de tus
-conversaciones para entrenar modelos.
+- Sólo el personal técnico autorizado puede acceder a los mensajes, y solo cuando hay un ticket de soporte abierto por vos, quedando registrado en un log de auditoría que podés solicitar.  
+- La Política de Privacidad indica explícitamente que los mensajes se envían al proveedor del modelo únicamente para generar la respuesta de esa conversación y que **no se utilizan** para entrenamiento. Además, tenés la opción de desactivar el procesamiento por IA desde *Configuración → Privacidad → Desactivar asistente IA*.  
 
-**2. Política de Privacidad, pág. 2, sección «4. Uso de inteligencia artificial»**
-
-> 4. Uso de inteligencia artificial
-El bot conversacional de Brokitech Turnos utiliza modelos de lenguaje de terceros para interpretar
-los mensajes de los Usuarios Finales.
-•
-Los mensajes se envían al proveedor del modelo únicamente para generar la respuesta de esa
-conversación.
-•
-No usamos el contenido de las conversaciones de nuestros Clientes para entrenar ni afinar
-modelos, ni propios ni de terceros.
-•
-Tenemos acuerdos con los proveedores que prohíben el uso de los datos enviados para
-entrenamiento.
-•
-Antes de enviar un mensaje al modelo, aplicamos un filtro que enmascara números de tarjeta
-y documentos de identidad si son detectados.
-Un Cliente puede desactivar el procesamiento por IA desde Configuración -> Privacidad ->
-Desactivar asistente IA. En ese caso el bot funciona con flujos guiados por menú, sin lenguaje
-natural.
-
-**3. FAQ de Soporte, pág. 2, sección «B3. El bot no responde a mis clientes. ¿Qué reviso?»**
-
-> B3. El bot no responde a mis clientes. ¿Qué reviso?
-En orden:
-
+Fuentes:  
+- FAQ de Soporte, pág. 4, sección «E3. ¿Pueden ver las conversaciones de mis clientes?».  
+- Política de Privacidad, pág. 2, sección «4. Uso de inteligencia artificial».
 
 **Herramientas invocadas:**
 
-1. `buscar_en_documentacion({'consulta': '¿Usan las conversaciones de mis clientes para entrenar modelos de IA?', 'top_k': 3})`
+1. `buscar_en_documentacion({'consulta': 'uso de conversaciones de clientes para entrenar modelos de IA'})`
 
 ---
 
 ## 7. El bot dejó de responderle a mis clientes, ¿qué reviso?
 
-**Modo demo (sin clave de API).** Extractos textuales de la documentación, sin redacción del modelo:
+**Qué revisá cuando el bot no responde a tus clientes**
 
-**1. FAQ de Soporte, pág. 2, sección «B3. El bot no responde a mis clientes. ¿Qué reviso?»**
+1. **Credenciales y acceso**  
+   - Verificá que la cuenta y la API de WhatsApp estén activas y con credenciales correctas.  
 
-> B3. El bot no responde a mis clientes. ¿Qué reviso?
-En orden:
+2. **Configuración del bot**  
+   - Confirmá que el flujo de conversación esté habilitado y que no haya sido puesto en modo “humano” accidentalmente.  
 
-**2. FAQ de Soporte, pág. 4, sección «E3. ¿Pueden ver las conversaciones de mis clientes?»**
+3. **Límites de la API de WhatsApp**  
+   - Revisá que no hayas superado los límites de mensajes o que la cuenta no esté bloqueada por Meta.  
 
-> E3. ¿Pueden ver las conversaciones de mis clientes?
-Solo personal técnico autorizado, únicamente ante un ticket de soporte abierto por vos, y queda
-registrado en un log de auditoría que podés solicitar. No usamos el contenido de tus
-conversaciones para entrenar modelos.
+4. **Estado de los servicios de terceros**  
+   - Chequeá si hay incidencias en WhatsApp Cloud API, Mercado Pago o en la infraestructura de Brokitech (pueden afectar la entrega de mensajes).  
 
-**3. FAQ de Soporte, pág. 2, sección «B5. ¿Puedo intervenir manualmente una conversación?»**
+5. **Modo manual**  
+   - Si en alguna conversación activaste “Modo humano”, el bot deja de responder durante 6 h o hasta que lo vuelvas a cambiar a automático.  
 
-> B5. ¿Puedo intervenir manualmente una conversación?
-Sí. Desde Conversaciones podés tomar el control de cualquier chat con el botón Modo humano. El
-bot deja de responder en ese chat durante 6 horas o hasta que lo devuelvas al modo automático.
+6. **Logs y alertas**  
+   - Revisá los logs de la plataforma (en la sección “Conversaciones”) para identificar errores o rechazos de entrega.  
 
+Si después de revisar todo lo anterior el problema persiste, podés escalar a soporte para que investiguemos con más detalle.
+
+Fuente: FAQ de Soporte, pág. 2, sección «B3. El bot no responde a mis clientes. ¿Qué reviso?».
 
 **Herramientas invocadas:**
 
-1. `buscar_en_documentacion({'consulta': 'El bot dejó de responderle a mis clientes, ¿qué reviso?', 'top_k': 3})`
+1. `buscar_en_documentacion({'consulta': 'bot no responde clientes troubleshooting'})`
 
 ---
 
 ## 8. ¿Se integra con AFIP para emitir factura electrónica automática?
 
-**Modo demo (sin clave de API).** Extractos textuales de la documentación, sin redacción del modelo:
+No, todavía no hay integración con la AFIP para generar facturas electrónicas de forma automática. La integración de facturación AFIP está en roadmap y se espera para el Q4 2026【Base de Conocimiento del Producto, pág. 3, sección «5. Integraciones disponibles»】.  
 
-**1. FAQ de Soporte, pág. 1, sección «A5. ¿Emiten factura?»**
-
-> A5. ¿Emiten factura?
-Sí, factura tipo B o A según corresponda, emitida automáticamente y enviada por email dentro de
-las 72 h de acreditado el pago. Cargá tu CUIT en Configuración -> Datos de facturación para
-recibir factura A.
-
-**2. Base de Conocimiento del Producto, pág. 1, sección «1.2 A quién NO está dirigido»**
-
-> 1.2 A quién NO está dirigido
-•
-Negocios que venden productos físicos sin componente de turno (usar Brokitech CRM).
-•
-Empresas que necesitan facturación electrónica AFIP integrada (está en roadmap, no
-disponible al día de hoy).
-•
-Operaciones fuera de Argentina. Al día de la fecha solo operamos con Mercado Pago Argentina
-y números de WhatsApp con prefijo +54.
-
-**3. Planes y Precios, pág. 3, sección «7. Facturación»**
-
-> 7. Facturación
-•
-Ciclo mensual: se cobra el mismo día del mes de la fecha de alta.
-•
-Ciclo anual: un único pago por adelantado; se renueva automáticamente salvo cancelación.
-•
-Factura B o A (cargando CUIT) enviada por email dentro de las 72 h de acreditado el pago.
-•
-Medios: tarjeta de crédito, débito y débito automático por Mercado Pago. Transferencia
-bancaria solo en Enterprise.
-
+En la actualidad el sistema sí emite facturas tipo A o B de forma automática y las envía por email dentro de las 72 h posteriores al pago, pero la generación directa a través de la AFIP no está disponible todavía【FAQ de Soporte, pág. 1, sección «A5. ¿Emiten factura?»】.
 
 **Herramientas invocadas:**
 
-1. `buscar_en_documentacion({'consulta': '¿Se integra con AFIP para emitir factura electrónica automática?', 'top_k': 3})`
+1. `buscar_en_documentacion({'consulta': 'integración con AFIP factura electrónica automática'})`
 
 ---
 
 ## 9. ¿Cuál es la mejor receta de milanesas a la napolitana?
 
-**Modo demo (sin clave de API).**
-
-No encontré nada sobre eso en la documentación. Probá con otras palabras o escribí a soporte@brokitech.com.
-
-**Herramientas invocadas:**
-
-1. `buscar_en_documentacion({'consulta': '¿Cuál es la mejor receta de milanesas a la napolitana?', 'top_k': 3})`
+Eso no está cubierto en la documentación que tengo. ¿Querés que lo escale a soporte humano?
 
 ---
 
 ## 10. Me cobraron dos veces el mes pasado y necesito que alguien lo revise.
 
-**Modo demo (sin clave de API).** Extractos textuales de la documentación, sin redacción del modelo:
+Se generó un ticket de soporte para que revisemos el cobro duplicado del mes pasado.
 
-**1. Tabla comparativa de planes (CSV), pág. 1, sección «Plan Negocio»**
+- **Ticket:** BTK-0001  
+- **Motivo:** Facturación  
+- **Canal de contacto:** soporte@brokitech.com / WhatsApp +54 9 11 5555‑0143  
 
-> Plan Negocio
-plan: Negocio; precio mensual ars: 79900; precio anual por mes ars: 63920; ahorro anual ars: 191760; profesionales incluidos: 15; turnos por mes: ilimitados; servicios max: 200; conversaciones wa mes: 5000; usuarios panel: 25; analitica: si; google calendar: si; onboarding asistido: si; white label: si; api rest: si; webhooks: si; multi sucursal: si; sla contractual: 99.5%; soporte primera respuesta: 4 h habiles; costo profesional adicional ars: 3900; costo turno excedente ars: 0; costo conversacion excedente ars: 48; publico objetivo: Cadenas con sucursales clinicas y quienes necesitan API
+Nuestro equipo de facturación lo revisará y se pondrá en contacto a la brevedad. Si tenés algún dato adicional (por ejemplo, número de factura o captura del cobro), podés enviarlo respondiendo a este mensaje.  
 
-**2. Planes y Precios, pág. 2, sección «4. Excedentes»**
+¡Gracias por avisarnos!  
 
-> 4. Excedentes
-Los planes tienen cupos. Superarlos no interrumpe el servicio; se factura el excedente en el ciclo
-siguiente:
-Concepto
-Costo del excedente
-Turno adicional (planes Inicial y Profesional)
-$95 por turno
-Conversación saliente adicional de WhatsApp
-$48 por conversación
-Profesional adicional (plan Profesional)
-$4.900 por mes
-Profesional adicional (plan Negocio)
-$3.900 por mes
-Sucursal adicional (plan Negocio)
-$19.900 por mes
-El plan Negocio no tiene límite de turnos, por lo que no genera excedente por ese concepto.
-Enviamos un aviso por email al alcanzar el 80% y el 100% del cupo mensual.
-
-**3. Términos y Condiciones de Uso, pág. 3, sección «8.1 Compensación por incumplimiento del SLA»**
-
-> 8.1 Compensación por incumplimiento del SLA
-Si en un mes calendario la disponibilidad cae por debajo del 99,5% en un plan con SLA, el Cliente
-puede solicitar un crédito:
-Disponibilidad mensual
-Crédito sobre el abono del mes
-99,0% – 99,49%
-10%
-95,0% – 98,99%
-25%
-Menos de 95,0%
-50%
-El crédito se solicita dentro de los 30 días, se aplica al ciclo siguiente y es el único remedio por
-indisponibilidad.
-
+Fuente: Sistema interno de tickets.
 
 **Herramientas invocadas:**
 
-1. `buscar_en_documentacion({'consulta': 'Me cobraron dos veces el mes pasado y necesito que alguien lo revise.', 'top_k': 3})`
+1. `escalar_a_humano({'motivo': 'facturación', 'resumen': 'El usuario indica que le cobraron dos veces el mes pasado y solicita revisión.'})`
 
 ---

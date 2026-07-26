@@ -15,8 +15,14 @@ from typing import Any, Callable
 
 import pandas as pd
 
-from .config import CSV_PLANES
+from .config import CONFIG, CSV_PLANES
 from .retriever import Buscador
+
+# Algunos proveedores (Groq, entre otros) validan los argumentos contra el
+# esquema antes de entregarlos, y varios modelos abiertos emiten los números
+# como string ("8" en vez de 8). Declarar la unión evita que la llamada se
+# rechace con un 400; la conversión a int la hace igual el código de abajo.
+NUMERO = ["integer", "string"]
 
 # Planes cuyos valores no son numéricos y por lo tanto no se pueden presupuestar.
 PLANES_A_MEDIDA = {"enterprise"}
@@ -58,7 +64,10 @@ class Herramientas:
         self.escalamientos: list[dict[str, str]] = []
 
     # --- 1. Búsqueda en los PDF -------------------------------------------
-    def buscar_en_documentacion(self, consulta: str, top_k: int = 5) -> str:
+    def buscar_en_documentacion(self, consulta: str, top_k: int | None = None) -> str:
+        # La profundidad de búsqueda no se expone al modelo: es un parámetro de
+        # infraestructura, no una decisión de la conversación.
+        top_k = CONFIG.top_k if top_k is None else top_k
         resultados = self.buscador.buscar(consulta, top_k=max(1, min(int(top_k), 10)))
         if not resultados:
             return json.dumps(
@@ -242,10 +251,6 @@ ESQUEMAS_HERRAMIENTAS = [
                         "type": "string",
                         "description": "Términos de búsqueda en español. Sé específico.",
                     },
-                    "top_k": {
-                        "type": "integer",
-                        "description": "Cantidad de fragmentos a traer (1 a 10). Por defecto 5.",
-                    },
                 },
                 "required": ["consulta"],
             },
@@ -294,13 +299,13 @@ ESQUEMAS_HERRAMIENTAS = [
                         "enum": ["mensual", "anual"],
                         "description": "Ciclo de facturación. Por defecto mensual.",
                     },
-                    "meses": {"type": "integer", "description": "Cantidad de meses a proyectar."},
+                    "meses": {"type": NUMERO, "description": "Cantidad de meses a proyectar."},
                     "profesionales": {
-                        "type": "integer",
+                        "type": NUMERO,
                         "description": "Cuántos profesionales usarán el sistema.",
                     },
                     "turnos_por_mes": {
-                        "type": "integer",
+                        "type": NUMERO,
                         "description": "Turnos mensuales estimados.",
                     },
                 },

@@ -63,7 +63,7 @@ flowchart TD
     H <-->|tool calling| I["src/tools.py<br/>4 herramientas"]
     I --> F
     I --> C
-    H <-->|API| J["DeepSeek<br/>deepseek-chat"]
+    H <-->|API| J["LLM<br/>Groq · DeepSeek · OpenAI"]
     H --> K["Respuesta + cita de fuente<br/>+ traza de razonamiento"]
     K --> L["app.py — Streamlit"]
 ```
@@ -105,7 +105,7 @@ devolver ruido que el modelo podría tomar como cierto. Está fijado en los test
 
 | Componente | Herramienta | Por qué |
 |---|---|---|
-| Modelo de lenguaje | **DeepSeek** (`deepseek-chat`) | Function calling nativo, costo bajo, API compatible con el SDK de OpenAI |
+| Modelo de lenguaje | **Groq** (`openai/gpt-oss-120b`) | Tier gratuito, tool calling sólido. Intercambiable: el cliente usa el SDK de OpenAI con `base_url` configurable, así que sirve DeepSeek, OpenAI o cualquier API compatible cambiando variables de entorno |
 | Lectura de PDF | **pypdf** | Extracción de texto por página, sin dependencias del sistema |
 | Generación de PDF | **reportlab** | Compila el Markdown a PDF con fuente embebida |
 | Búsqueda | **scikit-learn** (TF-IDF) | Índice híbrido liviano, sin GPU |
@@ -190,11 +190,16 @@ En Windows (PowerShell):
 cp .env.example .env
 ```
 
-Editá `.env` y poné tu clave de [platform.deepseek.com](https://platform.deepseek.com):
+Editá `.env` y poné tu clave. La más simple es [Groq](https://console.groq.com),
+que tiene tier gratuito y no pide tarjeta:
 
 ```
-DEEPSEEK_API_KEY=sk-tu-clave
+GROQ_API_KEY=gsk_tu-clave
+LLM_MODEL=openai/gpt-oss-120b
 ```
+
+El proveedor se detecta solo según qué clave esté cargada. También funciona con
+`DEEPSEEK_API_KEY` u `OPENAI_API_KEY` sin tocar el código.
 
 > **Sin clave también funciona.** La app arranca en *modo demo* y devuelve los
 > extractos textuales que recupera de los PDF, sin redacción del modelo. Sirve

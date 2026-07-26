@@ -61,12 +61,12 @@ with st.sidebar:
 
     if agente.modo_demo:
         st.warning(
-            "**Modo demo** — sin `DEEPSEEK_API_KEY`. El agente devuelve extractos "
-            "textuales de los PDF, sin redacción del modelo.",
+            "**Modo demo** — no hay clave de API cargada. El agente devuelve "
+            "extractos textuales de los PDF, sin redacción del modelo.",
             icon="⚠️",
         )
     else:
-        st.success(f"Modelo activo: `{CONFIG.modelo}`", icon="✅")
+        st.success(f"Modelo activo: `{CONFIG.descripcion}`", icon="✅")
 
     st.divider()
     st.markdown("**Base de conocimiento indexada**")

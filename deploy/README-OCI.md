@@ -75,7 +75,7 @@ cd Challenge-Alura-Agente
 Cargá la clave del modelo (si la omitís, la app arranca igual en modo demo):
 
 ```bash
-printf 'DEEPSEEK_API_KEY=sk-tu-clave\n' > .env
+printf 'GROQ_API_KEY=gsk_tu-clave\n' > .env
 ```
 
 ```bash
@@ -148,5 +148,5 @@ docker compose -f deploy/docker-compose.yml down
 | La página no carga desde afuera | Falta la regla de Ingress, o falta abrir `iptables` en la VM |
 | `curl localhost:8501` funciona pero la IP pública no | Es lo anterior: el contenedor está bien, la red no |
 | El contenedor reinicia en loop | `docker compose logs` — casi siempre falta memoria en shapes Micro |
-| Responde en "modo demo" | No se cargó `DEEPSEEK_API_KEY` en el `.env` |
+| Responde en "modo demo" | No se cargó ninguna clave de API en el `.env` |
 | `No hay PDF en docs/pdf` | Correr `python scripts/build_pdfs.py` (el Dockerfile ya lo hace solo) |

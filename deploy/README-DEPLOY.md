@@ -26,7 +26,8 @@ Gratis, sin tarjeta de crédito, pensada exactamente para este tipo de app.
    | Main file path | `app.py` |
 4. Antes de dar Deploy, abrí **Advanced settings → Secrets** y pegá:
    ```toml
-   DEEPSEEK_API_KEY = "sk-tu-clave"
+   GROQ_API_KEY = "gsk_tu-clave"
+   LLM_MODEL = "openai/gpt-oss-120b"
    ```
    Si lo dejás vacío la app igual levanta, en modo demo.
 5. **Deploy**. El primer build tarda 2–4 minutos.
@@ -53,7 +54,7 @@ Streamlit Cloud, o si preferís controlar la imagen con Docker.
    | Hardware | CPU basic (gratis) |
    | Visibility | Public |
 3. En **Settings → Variables and secrets → New secret**, agregá
-   `DEEPSEEK_API_KEY` con tu clave.
+   `GROQ_API_KEY` con tu clave.
 4. Subí el código:
    ```bash
    git remote add space https://huggingface.co/spaces/<tu-usuario>/agente-brokitech

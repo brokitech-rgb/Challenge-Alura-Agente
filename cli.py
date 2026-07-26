@@ -36,7 +36,7 @@ def main() -> int:
     agente = AgenteSoporte(buscador=Buscador(corpus))
     print(f"Agente de Soporte — Brokitech Turnos  ({len(corpus)} fragmentos indexados)")
     if agente.modo_demo:
-        print("MODO DEMO: sin DEEPSEEK_API_KEY, se devuelven extractos sin redactar.")
+        print("MODO DEMO: sin clave de API, se devuelven extractos sin redactar.")
 
     if len(sys.argv) > 1:
         imprimir(agente.responder(" ".join(sys.argv[1:])))
