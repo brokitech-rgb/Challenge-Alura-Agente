@@ -5,6 +5,8 @@ real, apoyándose exclusivamente en su documentación oficial en PDF y CSV.
 
 **Challenge Alura — Agente Inteligente** · Categoría: SaaS / Plataforma Digital
 
+[![Probar la app](https://img.shields.io/badge/▶_Probar_la_app-en_vivo-12507e?style=for-the-badge)](https://challenge-alura-agente-7er556nwbljvpv6z8skhet.streamlit.app)
+
 ---
 
 ## El problema
@@ -320,19 +322,24 @@ del modelo.
 ## Deploy
 
 La app está desplegada y accesible públicamente. Las instrucciones completas de
-las tres plataformas probadas están en **[deploy/README-DEPLOY.md](deploy/README-DEPLOY.md)**:
+las tres plataformas están en **[deploy/README-DEPLOY.md](deploy/README-DEPLOY.md)**:
 
 | Plataforma | Estado | Guía |
 |---|---|---|
-| Streamlit Community Cloud | Recomendada — gratis, sin tarjeta | [README-DEPLOY.md](deploy/README-DEPLOY.md) |
+| **Streamlit Community Cloud** | ✅ **En uso** — gratis, sin tarjeta | [README-DEPLOY.md](deploy/README-DEPLOY.md) |
 | Hugging Face Spaces | Alternativa gratuita | [README-DEPLOY.md](deploy/README-DEPLOY.md) |
 | Oracle Cloud (OCI) | Dockerfile + systemd + nginx listos | [README-OCI.md](deploy/README-OCI.md) |
 
-<!-- Al publicar, completar con la URL y la captura: -->
+### 🔗 Aplicación en vivo
 
-**URL pública:** _(completar tras el deploy)_
+**https://challenge-alura-agente-7er556nwbljvpv6z8skhet.streamlit.app**
 
-**Captura:** _(agregar en `docs/img/deploy.png`)_
+Desplegada en Streamlit Community Cloud desde la rama `master` de este
+repositorio. La clave del modelo se inyecta como secreto de la plataforma, así
+que no viaja en el código.
+
+> Las apps del tier gratuito se suspenden tras varios días sin visitas y se
+> reactivan solas con la primera carga, que puede tardar hasta un minuto.
 
 ---
 
