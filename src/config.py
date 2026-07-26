@@ -40,6 +40,25 @@ PROVEEDORES = (
 )
 
 
+def _secreto(clave: str, por_defecto: str = "") -> str:
+    """Lee una variable de entorno, con fallback a los secretos de Streamlit.
+
+    Streamlit Community Cloud y Hugging Face Spaces guardan los secretos en
+    `st.secrets`. Fuera de un runtime de Streamlit el acceso puede levantar
+    excepción, así que se consulta a la defensiva y el resto del código sigue
+    funcionando igual desde la CLI o los tests.
+    """
+    valor = os.getenv(clave, "").strip()
+    if valor:
+        return valor
+    try:
+        import streamlit as st
+
+        return str(st.secrets[clave]).strip()
+    except Exception:
+        return por_defecto
+
+
 def _int_env(clave: str, por_defecto: int) -> int:
     try:
         return int(os.getenv(clave, por_defecto))
@@ -56,13 +75,13 @@ def _float_env(clave: str, por_defecto: float) -> float:
 
 def _detectar_proveedor() -> tuple[Proveedor | None, str]:
     """Elige el proveedor según LLM_PROVIDER, o el primero con clave cargada."""
-    elegido = os.getenv("LLM_PROVIDER", "").strip().lower()
+    elegido = _secreto("LLM_PROVIDER").lower()
     if elegido:
         for proveedor in PROVEEDORES:
             if proveedor.nombre == elegido:
-                return proveedor, os.getenv(proveedor.variable_clave, "").strip()
+                return proveedor, _secreto(proveedor.variable_clave)
     for proveedor in PROVEEDORES:
-        clave = os.getenv(proveedor.variable_clave, "").strip()
+        clave = _secreto(proveedor.variable_clave)
         if clave:
             return proveedor, clave
     return None, ""
@@ -90,8 +109,8 @@ class Config:
         return cls(
             proveedor=proveedor,
             api_key=clave,
-            base_url=os.getenv("LLM_BASE_URL", "").strip() or proveedor.base_url,
-            modelo=os.getenv("LLM_MODEL", "").strip() or proveedor.modelo,
+            base_url=_secreto("LLM_BASE_URL") or proveedor.base_url,
+            modelo=_secreto("LLM_MODEL") or proveedor.modelo,
         )
 
     @property
