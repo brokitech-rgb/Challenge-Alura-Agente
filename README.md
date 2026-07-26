@@ -113,7 +113,7 @@ devolver ruido que el modelo podría tomar como cierto. Está fijado en los test
 | Búsqueda | **scikit-learn** (TF-IDF) | Índice híbrido liviano, sin GPU |
 | Datos tabulares | **pandas** | Lectura y consulta del CSV de planes |
 | Interfaz | **Streamlit** | Chat web en pocas líneas, deploy directo |
-| Tests | **pytest** + `streamlit.testing` | 41 tests sobre extracción, búsqueda, herramientas e interfaz |
+| Tests | **pytest** + `streamlit.testing` | 43 tests sobre extracción, búsqueda, herramientas e interfaz |
 
 > **Nota sobre las fuentes del PDF.** La primera versión usaba las fuentes base
 > de PDF (Helvetica), que se escriben sin tabla `ToUnicode`: al extraer el texto,
@@ -375,7 +375,7 @@ python -m pytest -q
 ```
 
 ```
-41 passed
+43 passed
 ```
 
 Cubren las cuatro capas donde el proyecto se puede romper en silencio:

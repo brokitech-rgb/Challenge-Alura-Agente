@@ -91,6 +91,19 @@ with st.sidebar:
         st.session_state.mensajes = []
         st.rerun()
 
+
+def escapar_dolares(texto: str) -> str:
+    """Escapa los `$` para que Streamlit no los tome como delimitadores LaTeX.
+
+    Toda la documentación cotiza en pesos, así que una respuesta típica trae
+    varios `$`. Streamlit los interpreta de a pares y renderiza lo que queda en
+    el medio como fórmula matemática: "$39.900 base y $14.700 extra" se
+    convertía en una cursiva serif sin espacios. Acá no hay LaTeX legítimo que
+    preservar, así que se escapan todos.
+    """
+    return texto.replace("$", r"\$")
+
+
 def render_trazas(trazas: list[dict]) -> None:
     if not trazas:
         return
@@ -130,7 +143,7 @@ if not st.session_state.mensajes and not pregunta:
 # ---------------------------------------------------------------- historial
 for mensaje in st.session_state.mensajes:
     with st.chat_message(mensaje["role"]):
-        st.markdown(mensaje["content"])
+        st.markdown(escapar_dolares(mensaje["content"]))
         render_trazas(mensaje.get("trazas") or [])
 
 # ---------------------------------------------------------------- turno nuevo
@@ -140,7 +153,7 @@ for mensaje in st.session_state.mensajes:
 if pregunta:
     st.session_state.mensajes.append({"role": "user", "content": pregunta})
     with st.chat_message("user"):
-        st.markdown(pregunta)
+        st.markdown(escapar_dolares(pregunta))
 
     with st.chat_message("assistant"):
         with st.spinner("Consultando la documentación…"):
@@ -150,7 +163,7 @@ if pregunta:
             ]
             respuesta = agente.responder(pregunta, historial)
 
-        st.markdown(respuesta.texto)
+        st.markdown(escapar_dolares(respuesta.texto))
         if respuesta.error:
             st.warning(respuesta.error, icon="⚠️")
 

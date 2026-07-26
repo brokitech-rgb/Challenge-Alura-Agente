@@ -96,6 +96,32 @@ def test_las_sugerencias_desaparecen_tras_la_primera_consulta(app):
     assert etiquetas == ["Limpiar conversación"]
 
 
+def test_los_montos_en_pesos_no_se_renderizan_como_latex():
+    """Regresión: Streamlit toma los `$` de a pares como delimitadores LaTeX.
+
+    Una respuesta con dos montos ("$39.900 base y $14.700 extra") hacía que todo
+    el texto intermedio se dibujara como una fórmula en cursiva serif, sin
+    espacios. Se vio en la app desplegada.
+    """
+    from app import escapar_dolares
+
+    original = "Plan Profesional: $39.900 base y $14.700 por profesionales extra."
+    escapado = escapar_dolares(original)
+
+    assert "$" not in escapado.replace(r"\$", "")
+    assert escapado.count(r"\$") == 2
+    assert "39.900" in escapado and "14.700" in escapado
+
+
+def test_la_respuesta_mostrada_escapa_los_montos(app):
+    app.chat_input[0].set_value("¿Cuánto cuesta el plan Profesional?").run()
+
+    assert not app.exception, app.exception
+    mostrado = " ".join(str(e.value) for e in app.chat_message[1].markdown)
+    # Todo `$` que llegue al render tiene que venir escapado.
+    assert "$" not in mostrado.replace(r"\$", "")
+
+
 def test_una_consulta_fuera_de_dominio_no_rompe_la_ui(app):
     app.chat_input[0].set_value("receta de milanesas a la napolitana").run()
 
