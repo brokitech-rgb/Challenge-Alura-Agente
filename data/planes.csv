@@ -1,0 +1,5 @@
+plan,precio_mensual_ars,precio_anual_por_mes_ars,ahorro_anual_ars,profesionales_incluidos,turnos_por_mes,servicios_max,conversaciones_wa_mes,usuarios_panel,analitica,google_calendar,onboarding_asistido,white_label,api_rest,webhooks,multi_sucursal,sla_contractual,soporte_primera_respuesta,costo_profesional_adicional_ars,costo_turno_excedente_ars,costo_conversacion_excedente_ars,publico_objetivo
+Inicial,19900,15920,47760,1,150,15,300,2,no,no,no,no,no,no,no,no,48 h habiles,no disponible,95,48,Profesional independiente: barbero tatuador kinesiologo manicura
+Profesional,39900,31920,95760,5,800,60,1500,8,si,si,si,no,no,no,no,no,24 h habiles,4900,95,48,Peluquerias y centros de estetica de 2 a 5 personas
+Negocio,79900,63920,191760,15,ilimitados,200,5000,25,si,si,si,si,si,si,si,99.5%,4 h habiles,3900,0,48,Cadenas con sucursales clinicas y quienes necesitan API
+Enterprise,a medida,a medida,a medida,ilimitados,ilimitados,200,a medida,ilimitados,si,si,si,si,si,si,si,personalizado,1 h habil,a medida,0,a medida,Franquicias mas de 15 profesionales o infraestructura dedicada
